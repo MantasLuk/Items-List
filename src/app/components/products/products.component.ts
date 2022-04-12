@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/ProductModel';
+import { ProductService } from 'src/app/services/product.service';
+
 
 @Component({
   selector: 'app-products',
@@ -8,20 +10,15 @@ import { Product } from 'src/app/models/ProductModel';
 })
 export class ProductsComponent implements OnInit {
 
+  
   public products:Product[]=[];
 
-  constructor() { 
-    let data = localStorage.getItem("products");
-    if(data != null){
-      this.products = JSON.parse(data);
-    }
+  constructor(private productService:ProductService) { 
+    productService.load();
+    this.products = productService.products
   }
 
   ngOnInit(): void {
-  }
-
-  private save(){
-    localStorage.setItem("products", JSON.stringify(this.products));
   }
 
   public addNewItem(name:HTMLInputElement, count:HTMLInputElement){
@@ -32,13 +29,7 @@ export class ProductsComponent implements OnInit {
       });
       name.value = '';
       count.value = '';
-      this.save();
+      this.productService.save();
     }
   }
-
-  public deleteItem(i:number){
-    this.products.splice(i,1);
-    this.save();
-  }
-
 }

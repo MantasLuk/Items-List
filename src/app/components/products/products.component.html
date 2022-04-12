@@ -3,11 +3,14 @@
         <div class="card">
             <div class="card-header">Items list</div>
             <div class="card-body">
-                <ul class="list-group">
+                <div class="row">
+                    <app-product-item *ngFor="let product of products; let i=index"  class="col-md-4 w-100"[product]="product" [index] ="i"> </app-product-item>
+                </div>
+                <!-- <ul class="list-group">
                     <li class="list-group-item" *ngFor="let product of products; let i = index">
                         {{i+1}}. <b>{{ product.name}}</b> [ amount: <b>{{product.count}}</b> ] <button class="btn btn-danger float-end" (click)="deleteItem(i)">delete</button>
                     </li>
-                </ul>
+                </ul> -->
             </div>
         </div>
     </div>

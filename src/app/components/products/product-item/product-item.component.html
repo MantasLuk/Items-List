@@ -1,0 +1,9 @@
+
+    <div class="card mt-3" >
+        <div class="card-body">
+            <div class="alert alert-info w-75 d-inline-block"><b>{{index+1}}. {{product.name}}</b></div>
+            <div class="alert alert-warning w-25 d-inline-block">[ Amount: {{product.count}} ]</div>
+            <hr>
+            <button class="btn btn-danger float-end" (click)="deleteItem()">Delete Item</button>
+        </div>
+    </div>

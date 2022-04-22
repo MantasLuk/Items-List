@@ -20,8 +20,7 @@ export class ProductItemComponent implements OnInit {
   }
 
   public deleteItem(){
-    this.productService.products.splice(this.index,1);
-    this.productService.save();
+    this.productService.delete(this.index);
   }
 
 }
